@@ -13,6 +13,9 @@ A FastAPI-based backend service that manages tasks in a Unix-inspired fashion, m
 - Comprehensive error handling
 - Unit tests
 
+## Demo
+https://github.com/user-attachments/assets/d4044530-cbc0-45ae-9dd9-d22455b373e5
+
 ## API Endpoints
 
 ### List All Tasks
