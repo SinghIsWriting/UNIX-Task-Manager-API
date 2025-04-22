@@ -1,0 +1,110 @@
+# Unix-Inspired Task Manager API
+
+A FastAPI-based backend service that manages tasks in a Unix-inspired fashion, mimicking the concept of process management through HTTP endpoints.
+
+## Features
+
+- List all tasks (similar to `ls` command)
+- Create new tasks (inspired by Unix `fork` system call)
+- Task persistence using MongoDB
+- RESTful API endpoints
+- Comprehensive error handling
+- Unit tests
+
+## API Endpoints
+
+### List All Tasks
+- **GET** `/tasks`
+  - Returns a list of all current tasks
+  - Response includes task ID, name, status, and timestamps
+  ```bash
+  curl -X GET "http://localhost:8000/tasks/"
+  ```
+
+### Create a Task
+- **POST** `/tasks`
+  - Creates a new task
+  - Request body should include task details
+  - Returns the created task with its ID
+  ```bash
+  curl -X POST "http://localhost:8000/tasks/" \
+      -H "Content-Type: application/json" \
+      -d '{
+            "name": "Test Task",
+            "description": "This is a test task",
+            "parent_id": "None"
+          }'
+  ```
+
+### Get a Task
+- **GET** `/tasks/{task_id}`
+  - Replace `{task_id}` with the actual ID from the create response
+  - Returns details of a specific task
+  ```bash
+  curl -X GET "http://localhost:8000/tasks/{task_id}"
+  ```
+
+### Update a Task
+- **PUT** `/tasks/{task_id}`
+  - Replace `{task_id}` with the actual ID from the create response
+  - Returns details of updated task
+  ```bash
+  curl -X PUT "http://localhost:8000/tasks/{task_id}" \
+      -H "Content-Type: application/json" \
+      -d '{
+            "name": "Updated Task",
+            "status": "running"
+          }'
+  ```
+
+### Delete Task
+- **DELETE** `/tasks/{task_id}`
+  - Removes a task from the system
+  ```bash
+  curl -X DELETE "http://localhost:8000/tasks/{task_id}"
+  ```
+
+You can also use the Swagger UI for testing:
+1. Start your FastAPI server:
+```bash
+uvicorn app.main:app --reload
+```
+
+
+## Setup
+
+1. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up environment variables:
+Create a `.env` file with:
+```
+MONGODB_URL=mongodb://localhost:27017
+DATABASE_NAME=taskmanager
+```
+
+4. Run the application:
+```bash
+uvicorn app.main:app --reload
+```
+
+## Testing
+
+Run tests using pytest:
+```bash
+pytest
+```
+
+## API Documentation
+
+Once the server is running, visit:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc 
