@@ -17,52 +17,57 @@ A FastAPI-based backend service that manages tasks in a Unix-inspired fashion, m
 - **GET** `/tasks`
   - Returns a list of all current tasks
   - Response includes task ID, name, status, and timestamps
-  ```bash
-  curl -X GET "http://localhost:8000/tasks/"
-  ```
+  - **Test case:**
+    ```bash
+    curl -X GET "http://localhost:8000/tasks/"
+    ```
 
 ### Create a Task
 - **POST** `/tasks`
   - Creates a new task
   - Request body should include task details
   - Returns the created task with its ID
-  ```bash
-  curl -X POST "http://localhost:8000/tasks/" \
-      -H "Content-Type: application/json" \
-      -d '{
-            "name": "Test Task",
-            "description": "This is a test task",
-            "parent_id": "None"
-          }'
-  ```
+  - **Test case:**
+    ```bash
+    curl -X POST "http://localhost:8000/tasks/" \
+        -H "Content-Type: application/json" \
+        -d '{
+              "name": "Test Task",
+              "description": "This is a test task",
+              "parent_id": "None"
+            }'
+    ```
 
 ### Get a Task
 - **GET** `/tasks/{task_id}`
   - Replace `{task_id}` with the actual ID from the create response
   - Returns details of a specific task
-  ```bash
-  curl -X GET "http://localhost:8000/tasks/{task_id}"
-  ```
+  - **Test case:**
+    ```bash
+    curl -X GET "http://localhost:8000/tasks/{task_id}"
+    ```
 
 ### Update a Task
 - **PUT** `/tasks/{task_id}`
   - Replace `{task_id}` with the actual ID from the create response
   - Returns details of updated task
-  ```bash
-  curl -X PUT "http://localhost:8000/tasks/{task_id}" \
-      -H "Content-Type: application/json" \
-      -d '{
-            "name": "Updated Task",
-            "status": "running"
-          }'
-  ```
+  - **Test case:**
+    ```bash
+    curl -X PUT "http://localhost:8000/tasks/{task_id}" \
+        -H "Content-Type: application/json" \
+        -d '{
+              "name": "Updated Task",
+              "status": "running"
+            }'
+    ```
 
 ### Delete Task
 - **DELETE** `/tasks/{task_id}`
   - Removes a task from the system
-  ```bash
-  curl -X DELETE "http://localhost:8000/tasks/{task_id}"
-  ```
+  - **Test case:**
+    ```bash
+    curl -X DELETE "http://localhost:8000/tasks/{task_id}"
+    ```
 
 You can also use the Swagger UI for testing:
 1. Start your FastAPI server:
@@ -94,13 +99,6 @@ DATABASE_NAME=taskmanager
 4. Run the application:
 ```bash
 uvicorn app.main:app --reload
-```
-
-## Testing
-
-Run tests using pytest:
-```bash
-pytest
 ```
 
 ## API Documentation
