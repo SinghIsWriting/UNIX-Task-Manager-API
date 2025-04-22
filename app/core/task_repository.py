@@ -11,12 +11,12 @@ class TaskRepository:
         db = get_database()
         tasks_list = db.tasks.find().skip(skip).limit(limit)
         async for document in tasks_list:
-            print(f"Found document: {document}")  # Debug print
+            print(f"Found document: {document}")
             task = Task.from_mongo(document)
-            print(f"Created task: {task}")  # Debug print
+            print(f"Created task: {task}")
             if task:
                 tasks.append(task)
-        print(f"Returning {len(tasks)} tasks")  # Debug print
+        print(f"Returning {len(tasks)} tasks")
         return tasks
 
     @staticmethod
@@ -64,5 +64,6 @@ class TaskRepository:
             return False
         db = get_database()
         result = await db.tasks.delete_one({"_id": ObjectId(task_id)})
+        # print(f"Delete result: {result.deleted_count}", result)
         return result.deleted_count > 0
     

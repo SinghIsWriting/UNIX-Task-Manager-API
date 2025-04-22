@@ -52,7 +52,7 @@ async def update_task(task_id: str, task_update: TaskUpdate):
         raise HTTPException(status_code=404, detail="Task not found")
     return updated_task
 
-@router.delete("/{task_id}", status_code=204)
+@router.delete("/{task_id}", status_code=200)
 async def delete_task(task_id: str):
     """
     Delete a task
@@ -60,5 +60,5 @@ async def delete_task(task_id: str):
     success = await TaskRepository.delete_task(task_id)
     if not success:
         raise HTTPException(status_code=404, detail="Task not found")
-    return None 
+    return {"detail": "Task deleted successfully", "status": 200}
 
