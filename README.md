@@ -114,25 +114,31 @@ uvicorn app.main:app --reload
 
 ## Setup
 
-1. Create a virtual environment:
+1. Clone repository
+```bash
+git clone https://github.com/SinghIsWriting/UNIX-Task-Manager-API.git
+cd UNIX-Task-Manager-API
+```
+
+2. Create a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
+4. Set up environment variables:
 Create a `.env` file with:
 ```
 MONGODB_URL=mongodb://localhost:27017
 DATABASE_NAME=taskmanager
 ```
 
-4. Run the application:
+5. Run the application:
 ```bash
 uvicorn app.main:app --reload
 ```
